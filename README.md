@@ -5,6 +5,8 @@ This project aims to be pulled into the contrib section of the [AGDC](https://gi
 
 It takes Synthetic Aperture Radar data (specifically GRD scenes from the Sentinel 1 platform) and prepares it for ingestion into the datacube. It uses the Sentinel Toolbox (SNAP 4.0) software.
 
+*NOTE: in-progress, not yet ready for use.*
+
 Processing steps
 ----------------
 Prerequisites: 
@@ -12,6 +14,7 @@ Prerequisites:
 - Precise orbital ephemeris metadata. (Possibly also calibration?)
 - A digital model for the elevations of the scattering surface (DSM/DEM).
 - gpt (graph processing tool) from the Sentinel Toolbox software.
+- Access to a configured AGDC instance.
 
 Stages:
 
@@ -24,9 +27,7 @@ Stages:
 
 Implementation
 --------------
-Note, this is "for now" and not necessarily optimal.
-
-Will use auto-downloaded auxilliary data (ephemeris, DEM) initially. Later, intend to use GDAL to subset a DSM, or test efficiency of chunked file-formats for the DSM raster.
+Initially will use auto-downloaded auxilliary data (ephemeris, DEM). Later, intend to use GDAL tools to subset a DSM, or test efficiency of chunked file-formats for the DSM raster.
 
 Steps 1-4 will be combined in a gpt xml.
 
@@ -35,4 +36,15 @@ Step 5 will be a gpt command-line instruction. (Some operators chain together in
 Step 6 will be a python prep script.
 
 The overall orchestration will initially be a shell script. (Other options would be a Makefile or a python cluster scheduling script.)
+
+A jupyter notebook will demonstrate the result (using AGDC API).
+
+Known flaws
+-----------
+
+- Ocean is masked out. (This is due to the nodata value used for the DEM by the terrain correction steps.)
+- Border noise is not entirely eliminated (some perimeter pixels).
+- Could conceive a more efficient unified radiometric/geometric terrain-correction operator (to reduce file IO concerning DSM)?
+- Further comparison with GAMMA software output is necessary.
+
 
