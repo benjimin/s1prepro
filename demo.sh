@@ -3,8 +3,7 @@
 # Preprocess a selection of overlapping scenes
 #
 
-# original test:
-# /g/data/fj7/SAR/Sentinel-1/GRD/2015-02/S1A_IW_GRDH_1SDV_20150223T090912_20150223T090925_004748_005E1F_4B90.zip
+# expect to take ~10min per scene, ~4x concurrency, ~10% sys versus user.
 
 s1=/g/data/fj7/SAR/Sentinel-1/GRD/2015-02/S1A_IW_GRDH_1SDV_20150223T090912_20150223T090925_004748_005E1F_4B90.zip
 s2=/g/data/fj7/SAR/Sentinel-1/GRD/2015-10/S1A_IW_GRDH_1SDV_20151015T192606_20151015T192629_008167_00B798_776D.zip
