@@ -3,15 +3,18 @@
 # Preprocess Sentinel 1 scenes using gpt
 #
 
+if [ "$#" != "2" ]; then # validate argument count
+echo Usage: . prepro.sh input_scene.zip output_scene.dim
+else
+
 GPT=./gpt # symlinked to bin/gpt of local SNAP install
 
-scene=/g/data/fj7/SAR/Sentinel-1/GRD/2015-02/S1A_IW_GRDH_1SDV_20150223T090912_20150223T090925_004748_005E1F_4B90.zip
-# original GRD scene
-
+scene=$1
 radiometriconly=temp.dim # temporary intermediate
+output=$2
 
-output=output.dim # fully preprocessed scene
+GPT graph.xml -Sscene=$scene -t $radiometriconly
+GPT Terrain-Correction -Ssource=$radiometriconly -t $output
 
-$GPT graph.xml -Sscene=$scene -t $radiometriconly
-$GPT Terrain-Correction -Ssource=$radiometriconly -t $output
+fi
 
