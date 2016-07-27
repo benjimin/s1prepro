@@ -13,8 +13,8 @@ scene=$1
 radiometriconly=temp.dim # temporary intermediate
 output=$2
 
-GPT graph.xml -Sscene=$scene -t $radiometriconly
-GPT Terrain-Correction -Ssource=$radiometriconly -t $output
+$GPT graph.xml -Sscene=$scene -t $radiometriconly
+$GPT Terrain-Correction -Ssource=$radiometriconly -t $output
 
 fi
 

@@ -16,7 +16,9 @@ o2=output2.dim
 o3=output3.dim
 o4=output4.dim
 
-. prepro.sh s1 o1
-. prepro.sh s2 o2
-. prepro.sh s3 o3
-. prepro.sh s4 o4
+. prepro.sh $s1 $o1
+. prepro.sh $s2 $o2
+. prepro.sh $s3 $o3
+. prepro.sh $s4 $o4
+
+
