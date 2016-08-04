@@ -46,5 +46,17 @@ Known flaws
 - Border noise is not entirely eliminated (some perimeter pixels).
 - Could conceive a more efficient unified radiometric/geometric terrain-correction operator (to reduce file IO concerning DSM)?
 - Further comparison with GAMMA software output is necessary.
+- Signal intensity units unspecified.
+- Currently autodownloading ancilliary data (e.g. using 3s SRTM, which is suboptimal).
+
+Instructions
+------------
+
+1. Ensure the environment has been prepared (run "datacube system check")
+2. Define the products (run "datacube product add productdef.yaml")
+3. Preprocess some scenes (run "demo.sh")
+4. For each newly preprocessed scene, run a preparation script (e.g. "python prep.py output1.dim") to generate metadata (yaml) in an appropriate format for datacube indexing.
+5. For each of those prepared scenes, index into the datacube (e.g. "datacube dataset add output1.yaml --auto-match")
+6. Verify the data using the datacube API (e.g. a python notebook).
 
 
