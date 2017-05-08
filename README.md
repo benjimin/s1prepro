@@ -56,7 +56,7 @@ Instructions
 2. Define the products (run "datacube product add productdef.yaml")
 3. Preprocess some scenes (run "bulk.sh example_list.txt")
 4. For each newly preprocessed scene, run a preparation script (e.g. "python prep.py output1.dim") to generate metadata (yaml) in an appropriate format for datacube indexing.
-5. For each of those prepared scenes, index into the datacube (e.g. "datacube dataset add output1.yaml --auto-match")
+5. For each of those prepared scenes, index into the datacube (e.g. "datacube dataset add output*.yaml --auto-match")
 6. Verify the data using the datacube API (e.g. a python notebook).
 
 

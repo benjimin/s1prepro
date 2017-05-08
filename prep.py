@@ -79,7 +79,7 @@ def prep_dataset(path):
         'processing_level': "terrain",
         'product_type': "gamma0",
         'creation_dt':  t0,
-        'platform': {'code': 'SENTINEL_1A'},
+        'platform': {'code': 'SENTINEL_1'},
         'instrument': {'name': 'SAR'},
         'extent': { 'coord': extent, 'from_dt': str(t0), 'from_dt': str(t1), 'center_dt': str(t0+(t1-t0)/2) },
         'format': {'name': 'ENVI'}, # ENVI or BEAM-DIMAP ?
@@ -95,7 +95,8 @@ import sys
 import yaml
 
 if len(sys.argv) != 2:
-    print "Usage: python prep.py scene.dim"
+    print("Usage: python prep.py scene.dim")
+    print("or (bulk usage): for file in *.dim; do python prep.py $file; done")
 else:
     scene = sys.argv[-1]
     assert scene.lower().endswith('.dim'), "Expect the BEAM-DIMAP header file as input"

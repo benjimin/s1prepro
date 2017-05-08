@@ -20,7 +20,7 @@ else
         echo
         echo $short
 
-        . prepro.sh $line $short.dim
+        . prepro.sh $line $short.dim > $short.log 2>&1
     done < $1
 
     date

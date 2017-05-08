@@ -6,14 +6,14 @@
 # Note: currently setting nodata as 0 rather than NaN
 
 
-name: s1a_gamma0_scene
-description: Sentinel-1A SAR Gamma0
+name: s1_gamma0_scene
+description: Sentinel-1 A/B SAR Gamma0
 metadata_type: eo
 
 metadata:
   format: {name: ENVI}
   instrument: {name: SAR}
-  platform: {code: SENTINEL_1A}
+  platform: {code: SENTINEL_1}
   product_type: gamma0
 
 measurements:
@@ -27,25 +27,3 @@ measurements:
   dtype: float32
   nodata: 0
 
----
-
-name: s1b_gamma0_scene
-description: Sentinel-1B SAR Gamma0
-metadata_type: eo
-
-metadata:
-  format: {name: ENVI}
-  instrument: {name: SAR}
-  platform: {code: SENTINEL_1B}
-  product_type: gamma0
-
-measurements:
-- name: vh
-  units: '1'
-  dtype: float32
-  nodata: 0
-
-- name: vv
-  units: '1'
-  dtype: float32
-  nodata: 0
