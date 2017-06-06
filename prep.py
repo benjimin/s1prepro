@@ -78,10 +78,10 @@ def prep_dataset(path):
         'id': str(uuid.uuid4()),
         'processing_level': "terrain",
         'product_type': "gamma0",
-        'creation_dt':  t0,
+        #'creation_dt':  t0,
         'platform': {'code': 'SENTINEL_1'},
         'instrument': {'name': 'SAR'},
-        'extent': { 'coord': extent, 'from_dt': str(t0), 'from_dt': str(t1), 'center_dt': str(t0+(t1-t0)/2) },
+        'extent': { 'coord': extent, 'from_dt': str(t0), 'to_dt': str(t1), 'center_dt': str(t0+(t1-t0)/2) },
         'format': {'name': 'ENVI'}, # ENVI or BEAM-DIMAP ?
         'grid_spatial': {'projection': projection},
         'image': { 'bands': {b: {'path': p, 'nodata': 0} for b,p in zip(bands,bandpaths)} },
