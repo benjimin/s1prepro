@@ -1,11 +1,12 @@
 Pre-processing of Sentinel 1
 ============================
 
-This project aims to be pulled into the contrib section of the [AGDC](https://github.com/data-cube/agdc-v2). 
+This project aims to connect [Sentinel 1](https://sentinel.esa.int/web/sentinel/missions/sentinel-1)
+with the [Open Data Cube](https://github.com/opendatacube/datacube-core).
 
-It takes Synthetic Aperture Radar data (specifically GRD scenes from the Sentinel 1 platform) and prepares it for ingestion into the datacube. It uses the Sentinel Toolbox (SNAP 4.0) software.
+It takes Synthetic Aperture Radar data (specifically GRD scenes from the Sentinel 1 platform) and prepares it for ingestion into an opendatacube instance (such as Digital Earth Australia), using the Sentinel Toolbox (SNAP) software.
 
-*NOTE: in-progress, not yet ready for use.*
+*NOTE: in-progress, use at own risk.*
 
 Processing steps
 ----------------
@@ -14,7 +15,7 @@ Prerequisites:
 - Precise orbital ephemeris metadata. (Possibly also calibration?)
 - A digital model for the elevations of the scattering surface (DSM/DEM).
 - gpt (graph processing tool) from the Sentinel Toolbox software.
-- Access to a configured AGDC instance.
+- Access to a configured ODC instance.
 
 Stages:
 
@@ -37,7 +38,7 @@ Step 6 will be a python prep script.
 
 The overall orchestration will initially be a shell script. (Other options would be a Makefile or a python cluster scheduling script.)
 
-A jupyter notebook will demonstrate the result (using AGDC API).
+A jupyter notebook will demonstrate the result (using opendatacube API).
 
 Known flaws
 -----------
@@ -48,15 +49,24 @@ Known flaws
 - Further comparison with GAMMA software output is necessary.
 - Signal intensity units unspecified.
 - Currently autodownloading ancilliary data (e.g. using 3s SRTM, which is suboptimal).
+- Output format is ENVI raster (approximately 10x larger than input zip) rather than cloud optimised GeoTIFF.
 
 Instructions
 ------------
 
-1. Ensure the environment has been prepared (run "datacube system check")
-2. Define the products (run "datacube product add productdef.yaml")
-3. Preprocess some scenes (run "bulk.sh example_list.txt")
-4. For each newly preprocessed scene, run a preparation script (e.g. "python prep.py output1.dim") to generate metadata (yaml) in an appropriate format for datacube indexing.
-5. For each of those prepared scenes, index into the datacube (e.g. "datacube dataset add output*.yaml --auto-match")
-6. Verify the data using the datacube API (e.g. a python notebook).
+**Process imagery**
+
+1. Ensure the graph processing tool is available (run "ln -s ../snap6/bin/gpt gpt" after installing SNAP)
+2. Batch process some scenes (run "./bulk.sh example_list.txt" after confirming example input)
+
+(Takes 10-15min/scene, using 4 cores and 10-15GB memory, on VDI@NCI.)
+
+**Insert into Open Data Cube**
+
+3. Ensure the environment has been prepared (run "datacube system check")
+4. Define the products (run "datacube product add productdef.yaml")
+5. For each newly preprocessed scene, run a preparation script (e.g. "python prep.py output1.dim") to generate metadata (yaml) in an appropriate format for datacube indexing.
+6. For each of those prepared scenes, index into the datacube (e.g. "datacube dataset add output*.yaml --auto-match")
+7. Verify the data using the datacube API (e.g. a python notebook).
 
 
