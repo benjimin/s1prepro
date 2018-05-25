@@ -17,10 +17,11 @@ else
     # clean workspace
     rm -r temp.data temp.dim
 
+        ./subset.sh $scene
         $GPT graph.xml -Sscene=$scene -t $radiometriconly
-        $GPT Terrain-Correction -Ssource=$radiometriconly -t $output
+        $GPT Terrain-Correction -Ssource=$radiometriconly -t $output -PexternalDEMFile=subset.tif -PexternalDEMNoDataValue=-999.5 -PnodataValueAtSea=false
 
-    rm -r temp.data temp.dim
+    #rm -r temp.data temp.dim
 
 fi
 

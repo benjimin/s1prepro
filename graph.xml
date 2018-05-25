@@ -48,10 +48,10 @@
     </sources>
     <parameters class="com.bc.ceres.binding.dom.XppDomElement">
       <sourceBands/>
-      <demName>SRTM 3Sec</demName>
+      <demName>Local DSM</demName>
       <demResamplingMethod>BICUBIC_INTERPOLATION</demResamplingMethod>
-      <externalDEMFile/>
-      <externalDEMNoDataValue>0.0</externalDEMNoDataValue>
+      <externalDEMFile>subset.tif</externalDEMFile>
+      <externalDEMNoDataValue>-999.5</externalDEMNoDataValue>
       <outputSimulatedImage>false</outputSimulatedImage>
       <reGridMethod>false</reGridMethod>
     </parameters>
