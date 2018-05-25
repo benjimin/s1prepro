@@ -1,4 +1,10 @@
 #!/bin/env bash
+#
+# This script crops the elevation model to the expected scene extent.
+#
+# It is necessary because otherwise SNAP performs poorly using continental-scale DSM.
+#
+
 file=$1
 window=$(
 grep POLYGON $(echo $file | sed 's:.zip$:.xml:') |
